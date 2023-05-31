@@ -1,12 +1,12 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View } from 'react-native';
 
-import Button from "../components/Button";
-import { RootTabScreenProps } from "../navigation/types";
-import { colors } from "../theme/colors";
+import Button from '../components/Button';
+import { RootTabScreenProps } from '../navigation/types';
+import { colors } from '../theme/colors';
 
 export default function AddItemScreen({
   navigation,
-}: RootTabScreenProps<"AddItemScreen">) {
+}: RootTabScreenProps<'AddItemScreen'>) {
   return (
     <View style={styles.container}>
       <View style={styles.buttonsContainer}>
@@ -25,11 +25,11 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   buttonsContainer: {
-    width: "100%",
+    width: '100%',
     marginTop: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "transparent",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: 'transparent',
   },
 });

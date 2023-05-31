@@ -1,17 +1,18 @@
-import { StyleSheet, View } from "react-native";
-import { Title } from "../components/Title";
-import { RootTabScreenProps } from "../navigation/types";
-import { colors } from "../theme/colors";
+import { StyleSheet, View } from 'react-native';
+
+import { RootTabScreenProps } from 'navigation/types';
+import { Title } from 'src/components/Title';
+import { colors } from 'theme/colors';
 
 export default function InventoryScreen({
   navigation,
-  route
-}: RootTabScreenProps<"Inventory">) {
-  const handleAddButtonPress = () => navigation.navigate("AddItem");
+  route,
+}: RootTabScreenProps<'Inventory'>) {
+  const handleAddButtonPress = () => navigation.navigate('AddItem');
 
   return (
     <View style={styles.container}>
-        <Title onButtonPress={handleAddButtonPress}>{route.name}</Title>
+      <Title onButtonPress={handleAddButtonPress}>{route.name}</Title>
     </View>
   );
 }
@@ -21,5 +22,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     backgroundColor: colors.background,
-  }
+  },
 });

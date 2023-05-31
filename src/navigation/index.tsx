@@ -1,25 +1,20 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
-import * as React from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Pressable, Text, View } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from 'react';
+import { Pressable, Text, View } from 'react-native';
 
-import InventoryScreen from "../screens/InventoryScreen";
-import AddItemScreen from "../screens/AddItemScreen";
+import { Title } from '../components/Title';
+import AddItemScreen from '../screens/AddItemScreen';
+import InventoryScreen from '../screens/InventoryScreen';
+import { colors } from '../theme/colors';
+import { fonts } from '../theme/fonts';
 import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
-} from "./types";
-import { colors } from "../theme/colors";
-import { fonts } from "../theme/fonts";
-import { Title } from "../components/Title";
+} from './types';
 
 export default function Navigation() {
   return (
@@ -29,21 +24,16 @@ export default function Navigation() {
   );
 }
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const NotFound = () => <Text>Not found</Text>;
-const FallbackScreen = ({ route }: RootTabScreenProps<"Inventory">) => {
+const FallbackScreen = ({ route }: RootTabScreenProps<'Inventory'>) => {
   return (
     <View
       style={{
         backgroundColor: colors.background,
         flex: 1,
         paddingHorizontal: 20,
-      }}
-    >
+      }}>
       <Title>{route?.name}</Title>
     </View>
   );
@@ -60,21 +50,16 @@ function RootNavigator() {
       <Stack.Screen
         name="NotFound"
         component={NotFound}
-        options={{ title: "Oops!" }}
+        options={{ title: 'Oops!' }}
       />
       <Stack.Group
-        screenOptions={{ presentation: "modal", headerShown: false }}
-      >
+        screenOptions={{ presentation: 'modal', headerShown: false }}>
         <Stack.Screen name="AddItem" component={AddItemScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
 }
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 const tabBarLabelStyle = { fontFamily: fonts.regular, fontSize: 10 };
 function BottomTabNavigator() {
@@ -84,12 +69,11 @@ function BottomTabNavigator() {
       screenOptions={{
         tabBarActiveTintColor: colors.mainBlue,
         headerShown: false,
-      }}
-    >
+      }}>
       <BottomTab.Screen
         name="Home"
         component={FallbackScreen}
-        options={({ navigation }: RootTabScreenProps<"Home">) => ({
+        options={(_navOption: RootTabScreenProps<'Home'>) => ({
           tabBarLabelStyle,
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         })}
@@ -97,7 +81,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Insurance"
         component={FallbackScreen}
-        options={({ navigation }: RootTabScreenProps<"Insurance">) => ({
+        options={(_navOption: RootTabScreenProps<'Insurance'>) => ({
           tabBarLabelStyle,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="umbrella" color={color} />
@@ -107,21 +91,23 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Inventory"
         component={InventoryScreen}
-        options={({ navigation }: RootTabScreenProps<"Inventory">) => ({
+        options={({ navigation }: RootTabScreenProps<'Inventory'>) => ({
           tabBarLabelStyle,
           tabBarIcon: ({ color }) => <TabBarIcon name="albums" color={color} />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate("AddItem")}
+              onPress={() => navigation.navigate('AddItem')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
-              })}
-            >
+                backgroundColor: 'red',
+                flex: 1,
+              })}>
               <Ionicons
                 name="add-circle"
                 size={25}
                 style={{ marginRight: 15 }}
               />
+              <Text>hello</Text>
             </Pressable>
           ),
         })}
@@ -129,7 +115,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Realty"
         component={FallbackScreen}
-        options={({ navigation }: RootTabScreenProps<"Realty">) => ({
+        options={(_navOption: RootTabScreenProps<'Realty'>) => ({
           tabBarLabelStyle,
           tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
         })}
@@ -137,7 +123,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Menu"
         component={FallbackScreen}
-        options={({ navigation }: RootTabScreenProps<"Menu">) => ({
+        options={(_navOption: RootTabScreenProps<'Menu'>) => ({
           tabBarLabelStyle,
           tabBarIcon: ({ color }) => <TabBarIcon name="menu" color={color} />,
         })}
@@ -150,7 +136,7 @@ function BottomTabNavigator() {
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof Ionicons>["name"];
+  name: React.ComponentProps<typeof Ionicons>['name'];
   color: string;
 }) {
   return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;

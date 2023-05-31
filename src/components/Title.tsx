@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
-import { fonts } from "../theme/fonts";
-import AddButton from "./AddButton";
+import { StyleSheet, Text, View } from 'react-native';
+
+import AddButton from './AddButton';
+import { fonts } from '../theme/fonts';
 
 export const Title = (props: {
   children: string;
@@ -9,7 +10,7 @@ export const Title = (props: {
   return (
     <View style={styles.titleContainer}>
       <Text style={styles.title}>{props.children}</Text>
-      {props.onButtonPress? <AddButton onPress={props.onButtonPress} /> : null}
+      {props.onButtonPress ? <AddButton onPress={props.onButtonPress} /> : null}
     </View>
   );
 };
@@ -21,12 +22,12 @@ const styles = StyleSheet.create({
     lineHeight: 42,
   },
   titleContainer: {
-    width: "100%",
+    width: '100%',
     height: 42,
     marginTop: 99,
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });
