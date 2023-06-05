@@ -15,7 +15,7 @@ const addInventory = async (inventory: Omit<IInventory, 'id'>) => {
     0,
   );
   if (totalAmount > MAX_TOTAL_PRICE) {
-    throw new Error('Total amount can be by pass 4000 euros');
+    throw new Error('Total amount can be by pass 40000 euros');
   }
   const updateList = [{ ...inventory, id: `${list.length + 1}` }, ...list];
   await AsyncStorage.setItem('inventory', JSON.stringify(updateList));

@@ -14,7 +14,7 @@ export const EmptyList: React.FC = () => {
       </Text>
       <View style={styles.subText}>
         <Text size={15} align="center" color={colors.grey[500]}>
-          You can add up to total value of 4000 euro inventory, give it a try!
+          You can add up to total value of 40000 euro inventory, give it a try!
         </Text>
       </View>
     </View>
