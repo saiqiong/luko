@@ -1,10 +1,12 @@
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-
-import Navigation from './src/navigation';
-import { fonts } from './src/theme/fonts';
+import React from 'react';
+import { ActivityIndicator, StyleSheet } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import Navigation from 'src/navigation';
+import { colors } from 'src/theme/colors';
+import { fonts } from 'theme/fonts';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -12,17 +14,30 @@ export default function App() {
       'https://fonts.cdnfonts.com/s/15011/CircularStd-Medium.woff',
     [fonts.bold]: 'https://fonts.cdnfonts.com/s/15011/CircularStd-Bold.woff',
   });
-  if (!fontsLoaded)
-    return (
-      <ActivityIndicator
-        size="large"
-        style={{ justifyContent: 'center', flex: 1 }}
-      />
-    );
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator size="large" style={styles.loading} />;
+  }
+
   return (
-    <SafeAreaProvider>
-      <Navigation />
-      <StatusBar />
-    </SafeAreaProvider>
+    <ActionSheetProvider>
+      <SafeAreaProvider>
+        <SafeAreaView style={styles.root}>
+          <Navigation />
+          <StatusBar />
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </ActionSheetProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  loading: {
+    justifyContent: 'center',
+    flex: 1,
+  },
+  root: {
+    flex: 1,
+    backgroundColor: colors.grey.background,
+  },
+});

@@ -13,11 +13,10 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.luko"
     },
     "android": {
       "adaptiveIcon": {
@@ -27,6 +26,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Luko accesses your photos to let you add inventory.",
+          "cameraPermission": "Luko app accesses your camera to let you add inventory."
+        }
+      ]
+    ]
   }
 }

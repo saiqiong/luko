@@ -21,7 +21,6 @@
       "services/*": ["./src/services/*"],
       "theme/*": ["./src/theme/*"],
       "utils/*": ["./src/utils/*"],
-      "routes/*": ["./src/routes/*"],
       "hooks/*": ["./src/hooks/*"],
       "tests/*": ["./tests/*"]
     }

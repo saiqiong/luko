@@ -2,14 +2,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Title } from 'components/text';
 import * as React from 'react';
-import { Pressable, Text, View } from 'react-native';
-
-import { Title } from '../components/Title';
-import AddItemScreen from '../screens/AddItemScreen';
-import InventoryScreen from '../screens/InventoryScreen';
-import { colors } from '../theme/colors';
-import { fonts } from '../theme/fonts';
+import { Text, View } from 'react-native';
+import AddItemScreen from 'screens/inventory/add-inventory';
+import InventoryScreen from 'src/screens/inventory/inventory-list';
+import { colors } from 'theme/colors';
+import { fonts } from 'theme/fonts';
 import {
   RootStackParamList,
   RootTabParamList,
@@ -30,7 +29,7 @@ const FallbackScreen = ({ route }: RootTabScreenProps<'Inventory'>) => {
   return (
     <View
       style={{
-        backgroundColor: colors.background,
+        backgroundColor: colors.grey.background,
         flex: 1,
         paddingHorizontal: 20,
       }}>
@@ -67,7 +66,7 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="Inventory"
       screenOptions={{
-        tabBarActiveTintColor: colors.mainBlue,
+        tabBarActiveTintColor: colors.blue.main,
         headerShown: false,
       }}>
       <BottomTab.Screen
@@ -91,25 +90,9 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Inventory"
         component={InventoryScreen}
-        options={({ navigation }: RootTabScreenProps<'Inventory'>) => ({
+        options={() => ({
           tabBarLabelStyle,
           tabBarIcon: ({ color }) => <TabBarIcon name="albums" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('AddItem')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-                backgroundColor: 'red',
-                flex: 1,
-              })}>
-              <Ionicons
-                name="add-circle"
-                size={25}
-                style={{ marginRight: 15 }}
-              />
-              <Text>hello</Text>
-            </Pressable>
-          ),
         })}
       />
       <BottomTab.Screen
@@ -139,5 +122,5 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof Ionicons>['name'];
   color: string;
 }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <Ionicons size={30} style={{ marginBottom: -10 }} {...props} />;
 }
